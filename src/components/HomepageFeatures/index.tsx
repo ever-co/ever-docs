@@ -15,8 +15,7 @@ const FeatureList: FeatureItem[] = [
     image: require('@site/static/img/image.png').default, 
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+         The Everything Platform for Businesses™
       </>
     ),
   },
@@ -28,10 +27,10 @@ function Feature({ title, image, description }: FeatureItem) {
       <div className="text--center">
         <img src={image} alt={title} className={styles.featureImage} />
       </div>
-      {/* <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
+      <div className="text--center padding-horiz--md">
+        {/* <Heading as="h3">{title}</Heading> */}
         <p>{description}</p>
-      </div> */}
+      </div>
     </div>
   );
 }
