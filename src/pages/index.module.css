@@ -3,6 +3,11 @@
  * and scoped locally.
  */
 
+ :root {
+  --subtitle-color-light: #333;  /* Light mode color */
+  --subtitle-color-dark: #bbb;   /* Dark mode color */
+}
+
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
@@ -20,4 +25,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.subtitleHome {
+  color:rgb(255, 255, 246);
+  width: 23rem;
+  margin: 3rem auto;
+}
+
+[data-theme='light'] .subtitleHome {
+  color: var(--subtitle-color-light);
+}
+
+[data-theme='dark'] .subtitleHome {
+  color: var(--subtitle-color-dark);
+}
+
+.homeButton {
+  color: white  !important;
+  background-color: blueviolet;
+  padding: 1rem 4rem;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  margin-top: 2rem;
+  border-radius: 2rem;
 }

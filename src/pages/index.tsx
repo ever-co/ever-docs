@@ -11,17 +11,17 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx(styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+        <p className={styles.subtitleHome}>{siteConfig.tagline}</p>
+        <div>
           <Link
-            className="button button--secondary button--lg"
+            className={styles.homeButton}
             to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            Start By Reading An Introduction
           </Link>
         </div>
       </div>
