@@ -40,7 +40,7 @@
     "description": "The label of footer link with label=GitHub linking to https://github.com/ever-co/ever-demand"
   },
   "copyright": {
-    "message": "Copyright © 2018-2023 Ever Co. LTD.<br/>This website was created with <img src=\"/img/docusaurus.svg\" width=\"20\"> Docusaurus.",
+    "message": "Copyright © 2025-present. Ever Co. LTD.<br/>",
     "description": "The footer copyright"
   }
 }

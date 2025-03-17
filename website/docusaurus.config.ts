@@ -29,8 +29,7 @@ const config: Config = {
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [{ src: "https://buttons.github.io/buttons.js", async: true }],
   title: "Ever® Platform", // Title for your website.
-  tagline:
-    "The Everything Platform for Businesses™",
+  tagline: "The Everything Platform for Businesses™",
   favicon: "img/favicon.png",
   // Set the production Url of your site here
   url: "https://docs.ever.co", // Your website URL
@@ -42,7 +41,7 @@ const config: Config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "ever-co",
   // Used for publishing and more
-  projectName: "ever-demand-docs",
+  projectName: "ever-docs",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -81,7 +80,7 @@ const config: Config = {
           // Please change this to your repo.
           path: "./docs/",
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/ever-co/ever-demand-docs",
+          editUrl: "https://github.com/ever-co/ever-docs",
         },
         blog: {
           showReadingTime: true,
@@ -133,7 +132,7 @@ const config: Config = {
             position: "right",
           },
           {
-            href: "https://github.com/ever-co/ever-demand",
+            href: "https://github.com/ever-co/ever-docs",
             label: "GitHub",
             position: "right",
             className: "header-github-link",
@@ -195,7 +194,7 @@ const config: Config = {
             ],
           },
         ],
-        copyright: `<p>Copyright © 2018-${new Date().getFullYear()} Ever Co. LTD.</p>`,
+        copyright: `<p>Copyright © ${new Date().getFullYear()}-present. Ever Co. LTD.</p>`,
       },
       themes: ["docusaurus-theme-redoc"],
       prism: {
