@@ -1,0 +1,41 @@
+# syntax=docker/dockerfile:1
+# Multi-stage build for the Ever Docs Docusaurus site (ever-co/ever-docs, website/ subdir).
+# Kaniko builds this with --context-sub-path=website, so the build context root is website/.
+# Stage 1 builds the static site; stage 2 serves it with nginx.
+
+# ---- Build stage ----
+FROM node:20-alpine AS build
+
+# git is occasionally needed by transitive postinstall scripts; keep the layer small.
+RUN apk add --no-cache git
+
+WORKDIR /app
+
+# Optional private-registry auth (no private deps today, but harmless if provided).
+ARG NPM_TOKEN=""
+RUN if [ -n "$NPM_TOKEN" ]; then \
+      printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_TOKEN" > /root/.npmrc ; \
+    fi
+
+# Install deps first (better layer caching). yarn.lock is the source of truth.
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --network-timeout 600000
+
+# Copy the rest of the site source and build the static output.
+COPY . .
+
+# NODE_ENV=production enables the Sentry plugin path; build emits to /app/build.
+ENV NODE_ENV=production
+RUN yarn build
+
+# Drop any auth material so it never leaks into later stages/artifacts.
+RUN rm -f /root/.npmrc
+
+# ---- Serve stage ----
+FROM nginx:alpine
+
+# Docusaurus is a multi-page static site (real .html files + locale subdirs),
+# so the stock nginx config serves it correctly — no SPA fallback needed.
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
