@@ -26,6 +26,8 @@ COPY . .
 
 # NODE_ENV=production enables the Sentry plugin path; build emits to /app/build.
 ENV NODE_ENV=production
+RUN sed -i '/themes:\s*\["docusaurus-theme-redoc"\],/d' docusaurus.config.ts
+# ^ strip stale docusaurus-theme-redoc (declared in config, not in deps)
 RUN sed -i 's/onBrokenLinks:[[:space:]]*"throw"/onBrokenLinks: "warn"/' docusaurus.config.ts
 RUN yarn build --locale en
 
