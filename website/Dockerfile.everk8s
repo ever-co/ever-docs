@@ -41,4 +41,7 @@ FROM nginx:alpine
 # so the stock nginx config serves it correctly — no SPA fallback needed.
 COPY --from=build /app/build /usr/share/nginx/html
 
+# Serve directory redirects RELATIVE, not absolute. See nginx-default.conf for why.
+COPY nginx-default.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
