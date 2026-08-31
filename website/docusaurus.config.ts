@@ -52,14 +52,14 @@ const config: Config = {
   // Locales advertised to visitors.
   //
   // Docusaurus renders a language dropdown for EVERY locale listed here, but the Docker build runs
-  // yarn run v1.22.22
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command. and so only emits English. The other twelve were linked from every page
-  // and all returned 404 -- 144 dead URLs, found by a crawl of docs.ever.co on 2026-08-30.
+  // a single-locale build (see the --locale flag in Dockerfile.everk8s) and so only emits English.
+  // The other twelve were linked from every page and all returned 404 -- 144 dead URLs, found by a
+  // crawl of docs.ever.co on 2026-08-30.
   //
   // Translation sources for all thirteen exist under docs/i18n, so nothing is lost here. To turn one
-  // back on it must be BOTH listed below AND built: drop the  flag in
-  // Dockerfile.everk8s (which builds every declared locale) or pass that locale explicitly. Adding a
-  // locale here alone just recreates the 404s.
+  // back on it must be BOTH listed below AND built: drop that flag in Dockerfile.everk8s, which then
+  // builds every declared locale, or pass the locale explicitly. Adding a locale here alone just
+  // recreates the 404s.
   i18n: {
     path: "./docs/i18n/",
     defaultLocale: "en",
