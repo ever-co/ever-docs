@@ -4,7 +4,7 @@
 	"caseSensitive": false,
 	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
 	"words": [
-		"clsx","cmfcmf","Gitter","noopener","octicon","typecheck","Userspage"
+		"clsx","cmfcmf","Docsearch","easyops","everk","Gitter","Kaniko","noopener","npmjs","octicon","redoc","subdirs","typecheck","Userspage"
 	],
 	"useGitignore": true,
 	"ignorePaths": [
