@@ -1,3 +1,9 @@
+---
+# Accidental duplicate of CQRS.md (byte-identical body). draft: true keeps it out of the
+# production build, sidebar and sitemap; the file itself is kept.
+draft: true
+---
+
 # CQRS Diagram
 
 ```mermaid
