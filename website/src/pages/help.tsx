@@ -21,7 +21,7 @@ function HelpPageHeader() {
   return (
     <header className={clsx('hero ', styles.heroBanner)}>
       <div className="container text--left">
-        <Heading as="h2"  className="hero__title">
+        <Heading as="h1"  className="hero__title">
 
         {translate({id: 'help.message', message: 'Need help?'},currentLocale)}
         </Heading>

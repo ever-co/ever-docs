@@ -8,6 +8,8 @@ const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME || null;
 const HAS_ALGOLIA_CREDENTIALS =
   ALGOLIA_APP_ID && ALGOLIA_API_KEY && ALGOLIA_INDEX_NAME;
 require("dotenv").config();
+// Locales advertised to visitors -- see the i18n block below for why this is English only.
+const LOCALES = ["en"];
 /** @type {import('@docusaurus/types').Config} */
 const config: Config = {
   plugins: [
@@ -65,14 +67,14 @@ const config: Config = {
   // crawl of docs.ever.co on 2026-08-30.
   //
   // Translation sources for all thirteen exist under docs/i18n, so nothing is lost here. To turn one
-  // back on it must be BOTH listed below AND built: drop that flag in Dockerfile.everk8s, which then
-  // builds every declared locale, or pass the locale explicitly. Adding a locale here alone just
-  // recreates the 404s.
+  // back on it must be BOTH listed in LOCALES (top of this file) AND built: drop that flag in
+  // Dockerfile.everk8s, which then builds every declared locale, or pass the locale explicitly.
+  // Adding a locale there alone just recreates the 404s.
   i18n: {
     path: "./docs/i18n/",
     defaultLocale: "en",
-    locales: ["en"],
-    // Ready to re-enable once they are built:
+    locales: LOCALES,
+    // Ready to re-enable in LOCALES once they are built:
     // "fr", "ar", "bg", "zh", "nl", "de", "he", "it", "pl", "pt", "ru", "es"
   },
 
@@ -98,6 +100,12 @@ const config: Config = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+        },
+        sitemap: {
+          // /search/ is the local search plugin's results page: an empty shell until a query runs,
+          // not a document. It was listed in the sitemap as a page to index (docs.ever.co/sitemap.xml,
+          // 2026-09-27). The page itself stays served.
+          ignorePatterns: ["/search/**"],
         },
       },
     ],
@@ -134,10 +142,19 @@ const config: Config = {
             label: "Support",
             position: "left",
           },
-          {
-            type: "localeDropdown",
-            position: "right",
-          },
+          // Shown only when more than one locale is advertised (see LOCALES at the top of this file).
+          //
+          // With English alone the dropdown is a one-entry "English" menu on every page, and on
+          // 404.html its only entry links to /404/, which is itself a 404 (measured on
+          // docs.ever.co/404.html on 2026-09-27). It comes back by itself once a locale is added.
+          ...(LOCALES.length > 1
+            ? [
+                {
+                  type: "localeDropdown",
+                  position: "right",
+                },
+              ]
+            : []),
           {
             href: "https://github.com/ever-co/ever-docs",
             label: "GitHub",
