@@ -36,6 +36,14 @@ const config: Config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
+  // Emit every URL with a trailing slash, matching how the site is actually served.
+  //
+  // The build writes each route as a directory (help/index.html), so nginx answers /help with a
+  // 301 to /help/. Without this flag the canonical, og:url, sitemap and internal links all used the
+  // slash-less form, so each canonical pointed at a redirect instead of at the page itself
+  // (measured on docs.ever.co on 2026-09-27: 10 of 12 sitemap entries answered 301, and so did the
+  // canonical of /help/, /users/, /docs/intro/ and /docs/diagrams/CQRS/).
+  trailingSlash: true,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
