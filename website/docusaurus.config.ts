@@ -89,7 +89,11 @@ const config: Config = {
           // Please change this to your repo.
           path: "./docs/",
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/ever-co/ever-docs",
+          // Joined with the doc's path relative to website/ (docs/<file>.md): the bare repository
+          // URL gave <repo>/docs/<file>.md, a 404 on every doc page. develop is the default branch
+          // (master is production). `blob/`, not `edit/`: GitHub sends crawlers on `edit/` to its
+          // login page. Checked on a build by `yarn check:edit-urls`.
+          editUrl: "https://github.com/ever-co/ever-docs/blob/develop/website/",
         },
         blog: {
           showReadingTime: true,
