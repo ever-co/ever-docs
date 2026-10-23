@@ -4,10 +4,13 @@
 # Stage 1 builds the static site; stage 2 serves it with nginx.
 
 # ---- Build stage ----
-FROM node:20-alpine AS build
+FROM node:26.12.1-alpine AS build
 
 # git is occasionally needed by transitive postinstall scripts; keep the layer small.
 RUN apk add --no-cache git
+
+# node:26 images no longer bundle Yarn. Install Yarn classic (matches yarn.lock).
+RUN npm install yarn -g --force
 
 WORKDIR /app
 
